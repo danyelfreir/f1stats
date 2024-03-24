@@ -1,0 +1,24 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t f1stats .
+
+      - name: Tag Docker image
+        run: docker tag f1stats "${{ secrets.DOCKER_REPO_URL }}/f1stats:latest"
+
+      - name: Push Docker image
+        run: docker push "${{ secrets.DOCKER_REPO_URL }}/f1stats:latest"
+
