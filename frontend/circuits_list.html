@@ -1,0 +1,13 @@
+{{ define "circuits_list"}}
+    {{ range .Circuits }}
+    <div hx-get="/races/{{ .Raceid }}/drivers"
+         hx-on="onClick"
+         hx-target="#fs-drivers"
+         hx-swap="innerHTML">
+        <h4>
+            {{ .Name }}
+        </h4>
+        {{ .Location}} - {{ .Country }}
+    </div>
+    {{ end }}
+{{ end }}

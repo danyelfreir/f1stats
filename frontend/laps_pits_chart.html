@@ -1,0 +1,28 @@
+{{ define "laps_pits_chart" }}
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                {{ range .Laps }}
+                    {{ .Lap }},
+        {{ end }}
+            ],
+        datasets: [{
+            label: 'Time in milliseconds',
+            data: [
+                {{ range .Laps }}
+                        {{ .Milliseconds }},
+        {{ end }}
+    ],
+        borderWidth: 1
+            }]
+        },
+        options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+    });
+{{ end }}

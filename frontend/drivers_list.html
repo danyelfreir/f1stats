@@ -1,0 +1,9 @@
+{{ define "drivers_list"}}
+    {{ range $.Drivers }}
+    <div>
+        <h4 hx-on:click="updateGraph({{ $.Raceid }}, {{ .Driverid }})">
+            {{ .Forename }}
+        </h4>
+    </div>
+    {{ end }}
+{{ end }}
