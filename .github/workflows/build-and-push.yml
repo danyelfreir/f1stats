@@ -14,14 +14,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Login to Docker Registry
-        run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin "${{ secrets.DOCKER_REPO_URL }}"
+        run: echo "${{ secrets.DOCKER_PASS }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
 
       - name: Build Docker image
         run: docker build -t f1stats .
 
       - name: Tag Docker image
-        run: docker tag f1stats "${{ secrets.DOCKER_REPO_URL }}/f1stats:latest"
+        run: docker tag f1stats "${{ secrets.DOCKER_USER }}/f1stats:latest"
 
       - name: Push Docker image
-        run: docker push "${{ secrets.DOCKER_REPO_URL }}/f1stats:latest"
+        run: docker push "${{ secrets.DOCKER_USER }}/f1stats:latest"
 
